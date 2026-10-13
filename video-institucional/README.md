@@ -2,7 +2,26 @@
 
 Produzido em código com [Remotion](https://www.remotion.dev/) (React) + FFmpeg.
 
-## Versão 2 (atual) — estilo "demo de produto"
+## Tecvertex apresenta a Odontocril
+
+Vídeo da Tecvertex anunciando a Odontocril como sua primeira cliente, no estilo do comercial da Tecvertex.
+
+| Arquivo | Formato |
+|---|---|
+| `out/tecvertex-apresenta-odontocril-vertical.mp4` | 1080 × 1920, 40 s |
+| `out/tecvertex-apresenta-odontocril-horizontal.mp4` | 1920 × 1080, 40 s |
+
+Abertura ("Toda história começa com… a primeira cliente.") → a conversa no WhatsApp → "Bem-vinda,
+Odontocril." com o perfil da cliente → primeira entrega (o vídeo institucional rodando num celular) →
+"Tecvertex × Odontocril — Obrigado pela confiança" → encerramento da Tecvertex com CTA e site.
+
+Código em `src/tecvertex/` (composições `Tecvertex-Vertical` / `Tecvertex-Horizontal`);
+renderizar com `./render.sh Tecvertex-Vertical Tecvertex-Horizontal`. A logo da Tecvertex
+(`public/tecvertex/`) foi extraída do último quadro do comercial oficial, com o fundo removido — vale
+substituí-la pelo arquivo original em alta resolução. Trilha: `scripts/trilha_v2.py public/audio/trilha_tecvertex.wav 40 34`.
+A conversa é uma encenação ilustrativa.
+
+## Odontocril — versão 2 (atual) — estilo "demo de produto"
 
 Inspirada no vídeo de referência: fundo claro, cabeçalho fixo com a logo e o indicador "Passo 1 de 3",
 títulos curtos alinhados à esquerda com destaque azul e a história contada por interfaces (conversa no

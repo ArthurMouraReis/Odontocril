@@ -1,7 +1,9 @@
 """Trilha da versão 2 (ritmada, 120 BPM, compasso de 2 s) — sintetizada, livre de direitos.
 
-Uso: python scripts/trilha_v2.py public/audio/trilha_v2.wav
-Seções: 0–6 s introdução · 6–36 s groove · 36–38 s pausa/subida · 38 s logo · fim em 46 s.
+Uso: python scripts/trilha_v2.py <saida.wav> [duração] [logo]
+  Odontocril v2:  python scripts/trilha_v2.py public/audio/trilha_v2.wav 46 38
+  Tecvertex:      python scripts/trilha_v2.py public/audio/trilha_tecvertex.wav 40 34
+Seções: 0–6 s introdução · 6 s até (logo − 2) groove · 2 s de subida · logo · final.
 """
 import sys
 import numpy as np
@@ -11,7 +13,10 @@ from scipy.signal import fftconvolve, butter, sosfilt
 SR = 44100
 BEAT = 0.5
 BAR = 2.0
-TOTAL = 46.0
+TOTAL = float(sys.argv[2]) if len(sys.argv) > 2 else 46.0
+LOGO = float(sys.argv[3]) if len(sys.argv) > 3 else 38.0
+GROOVE_END = int((LOGO - 2) / 2)  # compasso em que a bateria para
+FILL = GROOVE_END // 2 + 2
 N = int((TOTAL + 2) * SR)
 rng = np.random.default_rng(11)
 L = np.zeros(N); R = np.zeros(N)
@@ -73,7 +78,7 @@ def riser(d):
 
 nbars = int(TOTAL / BAR)
 for b in range(nbars):
-    t0 = b * BAR; ch = CHORDS[b % 4]; groove = 3 <= b < 18; outro = b >= 19
+    t0 = b * BAR; ch = CHORDS[b % 4]; groove = 3 <= b < GROOVE_END; outro = b >= GROOVE_END + 1
     # pad
     for m in ch:
         add(pad(m, BAR), t0, 0.05 if groove else 0.07, pan=rng.uniform(-0.5, 0.5))
@@ -93,7 +98,7 @@ for b in range(nbars):
             add(bass(BASS[b % 4] + (12 if k % 2 else 0), 0.24), t0 + k * BEAT / 2, 0.28 if k % 2 == 0 else 0.16)
     # bateria
     if groove:
-        fill = b == 11
+        fill = b == FILL
         for k in range(4):
             if fill and k >= 2: continue
             add(kick(), t0 + k * BEAT, 0.55)
@@ -112,11 +117,11 @@ for b in range(nbars):
 # pequenos acentos
 add(kick(), 3.0, 0.4)                    # "A gente cuida…"
 add(riser(2.0), 4.0, 0.05)               # entrada do groove
-add(riser(2.0), 36.0, 0.09)              # subida para o logo
+add(riser(2.0), LOGO - 2, 0.09)              # subida para o logo
 for m in CHORDS[0] + [76, 81]:           # logo
-    add(pluck(m + 12, 3.0, 0.9), 38.0, 0.12)
-    add(pad(m, 6.0), 38.0, 0.07)
-add(kick(), 38.0, 0.6)
+    add(pluck(m + 12, 3.0, 0.9), LOGO, 0.12)
+    add(pad(m, 6.0), LOGO, 0.07)
+add(kick(), LOGO, 0.6)
 
 def ir(seed, d=1.8):
     r = np.random.default_rng(seed); t = tt(d)

@@ -23,7 +23,7 @@ export const Sfx: React.FC<{ name: "click" | "typing" | "message" | "success" | 
 
 /* ---------------- Cabeçalho fixo ---------------- */
 
-export const Header: React.FC<{ step: number | null; caption: string | null; visible: number }> = ({ step, caption, visible }) => {
+export const Header: React.FC<{ step: number | null; caption: string | null; visible: number; brand?: React.ReactNode }> = ({ step, caption, visible, brand }) => {
   const { vertical, u } = useLayout();
   const pad = vertical ? 80 * u : 140 * u;
   return (
@@ -39,7 +39,7 @@ export const Header: React.FC<{ step: number | null; caption: string | null; vis
         opacity: visible,
       }}
     >
-      <Img src={staticFile("brand/logo_mark.png")} style={{ height: 74 * u }} />
+      {brand ?? <Img src={staticFile("brand/logo_mark.png")} style={{ height: 74 * u }} />}
       <div style={{ display: "flex", alignItems: "center", gap: 18 * u }}>
         {step !== null ? (
           <>
