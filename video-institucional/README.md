@@ -2,27 +2,48 @@
 
 Produzido em código com [Remotion](https://www.remotion.dev/) (React) + FFmpeg.
 
-## Tecvertex apresenta a Odontocril
+## Tecvertex apresenta a Odontocril (site + sistema de gestão)
 
-Vídeo da Tecvertex anunciando a Odontocril como sua primeira cliente, no estilo do comercial da Tecvertex.
+Vídeo da Tecvertex anunciando a Odontocril como primeira cliente, no estilo do comercial da Tecvertex,
+mostrando o site e o sistema de gestão.
 
 | Arquivo | Formato |
 |---|---|
-| `out/tecvertex-apresenta-odontocril-vertical.mp4` | 1080 × 1920, 50 s |
-| `out/tecvertex-apresenta-odontocril-horizontal.mp4` | 1920 × 1080, 50 s |
+| `out/tecvertex-apresenta-odontocril-vertical.mp4` | 1080 × 1920, 74 s |
+| `out/tecvertex-apresenta-odontocril-horizontal.mp4` | 1920 × 1080, 74 s |
 
-Abertura ("Toda história começa com… a primeira cliente.") → a conversa no WhatsApp → "Bem-vinda,
-Odontocril." com o perfil da cliente → o primeiro projeto: o site da Odontocril no computador (URL digitada,
-página carregando, clique em "Falar no WhatsApp") → o site no celular, terminando no WhatsApp com a mensagem
-pronta →
-"Tecvertex × Odontocril — Obrigado pela confiança" → encerramento da Tecvertex com CTA e site.
+| Tempo | Cena |
+|---|---|
+| 0–6 s | "Toda história começa com… a primeira cliente." |
+| 6–12 s | A conversa no WhatsApp ("Vamos criar o site e o sistema de gestão.") |
+| 12–20 s | "Bem-vinda, Odontocril." — perfil da cliente |
+| 20–29 s | O site no computador (URL digitada, página carregando, clique em "Falar no WhatsApp") |
+| 29–38 s | O site no celular, terminando no WhatsApp com a mensagem pronta |
+| 38–46 s | **Tecvertex Gestão** — painel (valor em estoque, estoque baixo, receita, funil) |
+| 46–56 s | Venda arrastada para "Ganho" → confirmação → baixa automática (Ultrassom 7 → 6) → movimentação registrada |
+| 56–62 s | Alertas automáticos: o que repor, clientes sem comprar há tempo, previsão do mês |
+| 62–68 s | Tecvertex × Odontocril — "Obrigado pela confiança" |
+| 68–74 s | Encerramento da Tecvertex com CTA e site |
 
 Código em `src/tecvertex/` (composições `Tecvertex-Vertical` / `Tecvertex-Horizontal`);
-renderizar com `./render.sh Tecvertex-Vertical Tecvertex-Horizontal`. A logo da Tecvertex
-(`public/tecvertex/`) foi extraída do último quadro do comercial oficial, com o fundo removido — vale
-substituí-la pelo arquivo original em alta resolução. Trilha: `scripts/trilha_v2.py public/audio/trilha_tecvertex.wav 50 44`.
-A conversa e as telas do site (`src/tecvertex/site.tsx`) são ilustrativas — troque pelas capturas reais do
-site quando ele estiver no ar.
+renderizar com `./render.sh Tecvertex-Vertical Tecvertex-Horizontal`.
+Trilha: `scripts/trilha_v2.py public/audio/trilha_tecvertex.wav 74 68`.
+
+**Telas do sistema:** são capturas reais do Tecvertex Gestão (repositório `tecvertex-`), rodando com uma
+base de demonstração odontológica — produtos, clientes e valores são fictícios (aviso "Dados de
+demonstração" na tela). Para refazer as capturas (`public/tecvertex/gestao/`):
+
+```bash
+# no repositório tecvertex- (npm install && npm run build)
+node scripts/gestao/seed-odontocril.mjs <tecvertex-> /tmp/demo/db.json
+DATA_DIR=/tmp/demo JWT_SECRET=demo PORT=3001 NODE_ENV=production node server/index.js
+node scripts/gestao/capture.mjs public/tecvertex/gestao   # requer playwright-core
+```
+(converta os PNGs para JPEG e copie `meta.json` para `src/tecvertex/gestao-meta.json`.)
+
+**Telas do site** (`src/tecvertex/site.tsx`) e a conversa são ilustrativas — troque pelas capturas reais
+do site quando ele estiver no ar. A logo da Tecvertex (`public/tecvertex/`) foi extraída do comercial
+oficial; vale substituir pelo arquivo original.
 
 ## Odontocril — versão 2 (atual) — estilo "demo de produto"
 

@@ -64,7 +64,7 @@ export const Site: React.FC = () => {
         cardW={W}
         cardH={H}
         note
-        headline={<Headline start={0} size={(vertical ? 80 : 76) * u} lines={[{ text: "O primeiro projeto:" }, { text: "o site da Odontocril.", color: K.blue }]} />}
+        headline={<Headline start={0} size={(vertical ? 80 : 76) * u} lines={[{ text: "Primeiro, um site com" }, { text: "a cara da Odontocril.", color: K.blue }]} />}
         card={<Browser />}
       />
       <Sfx name="typing" at={URL.start} dur={ENTER - URL.start - 4} volume={0.3} />

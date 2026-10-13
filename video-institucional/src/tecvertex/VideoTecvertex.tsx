@@ -10,6 +10,9 @@ import { Conversa } from "./scenes/Conversa";
 import { Cliente } from "./scenes/Cliente";
 import { Site } from "./scenes/Site";
 import { Celular } from "./scenes/Celular";
+import { Gestao } from "./scenes/Gestao";
+import { Funil } from "./scenes/Funil";
+import { Insights } from "./scenes/Insights";
 import { Parceria } from "./scenes/Parceria";
 import { Encerramento } from "./scenes/Encerramento";
 
@@ -19,15 +22,21 @@ const SCENES: { key: keyof typeof T; name: string; C: React.FC }[] = [
   { key: "cliente", name: "3 · Bem-vinda, Odontocril", C: Cliente },
   { key: "site", name: "4 · O site no computador", C: Site },
   { key: "celular", name: "5 · O site no celular", C: Celular },
-  { key: "parceria", name: "6 · Parceria", C: Parceria },
-  { key: "final", name: "7 · Encerramento", C: Encerramento },
+  { key: "gestao", name: "6 · Sistema de gestão — painel", C: Gestao },
+  { key: "funil", name: "7 · Sistema — venda e baixa no estoque", C: Funil },
+  { key: "insights", name: "8 · Sistema — alertas", C: Insights },
+  { key: "parceria", name: "9 · Parceria", C: Parceria },
+  { key: "final", name: "10 · Encerramento", C: Encerramento },
 ];
 
 const CAPTIONS: [keyof typeof T, string][] = [
   ["conversa", "Como tudo começou"],
   ["cliente", "Cliente nº 1"],
-  ["site", "Primeiro projeto"],
-  ["celular", "No celular"],
+  ["site", "O site"],
+  ["celular", "O site no celular"],
+  ["gestao", "O sistema"],
+  ["funil", "O sistema"],
+  ["insights", "O sistema"],
   ["parceria", "Parceria"],
 ];
 

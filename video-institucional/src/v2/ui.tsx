@@ -104,7 +104,7 @@ export const StepScene: React.FC<{ dur: number; children: React.ReactNode; exit?
  * Layout padrão de um passo: título + cartão (mockup) com tamanho de design fixo.
  * O cartão é escalado para caber no quadro; as coordenadas internas (cursor) são as de design.
  */
-export const StepLayout: React.FC<{ headline: React.ReactNode; card: React.ReactNode; cardW: number; cardH: number; note?: boolean }> = ({ headline, card, cardW, cardH, note }) => {
+export const StepLayout: React.FC<{ headline: React.ReactNode; card: React.ReactNode; cardW: number; cardH: number; note?: boolean; noteText?: string }> = ({ headline, card, cardW, cardH, note, noteText }) => {
   const { vertical, u } = useLayout();
   const frame = useCurrentFrame();
   const enter = interpolate(frame, [6, 26], [0, 1], { ...clamp, easing: OUT });
@@ -127,16 +127,16 @@ export const StepLayout: React.FC<{ headline: React.ReactNode; card: React.React
           {cardBox}
         </AbsoluteFill>
       )}
-      {note ? <IllustrativeNote /> : null}
+      {note ? <IllustrativeNote text={noteText} /> : null}
     </AbsoluteFill>
   );
 };
 
-export const IllustrativeNote: React.FC = () => {
+export const IllustrativeNote: React.FC<{ text?: string }> = ({ text = "Imagens ilustrativas" }) => {
   const { vertical, u } = useLayout();
   return (
     <div style={{ position: "absolute", bottom: (vertical ? 80 : 40) * u, left: (vertical ? 80 : 140) * u, fontFamily: F_TEXT, fontSize: 22 * u, color: K.faint }}>
-      Imagens ilustrativas
+      {text}
     </div>
   );
 };
