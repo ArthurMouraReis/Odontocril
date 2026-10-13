@@ -65,7 +65,7 @@ const Chat: React.FC = () => {
             </div>
           </div>
         ) : null}
-        <Bubble at={IN2} text="Que bom ter vocês com a gente! Vamos começar." time="9:14" />
+        <Bubble at={IN2} text="Que bom ter vocês com a gente! Vamos criar o seu site." time="9:14" />
       </div>
       <div style={{ position: "absolute", left: 0, right: 0, bottom: 0, height: 112, display: "flex", alignItems: "center", gap: 18, padding: "0 24px", background: "#FFF", borderTop: `1px solid ${K.line}` }}>
         <div style={{ flex: 1, height: 68, borderRadius: 34, background: K.bg, display: "flex", alignItems: "center", padding: "0 26px", fontFamily: F_TEXT, fontSize: 28, color: current ? K.ink : K.faint, whiteSpace: "nowrap", overflow: "hidden" }}>

@@ -8,7 +8,8 @@ import { T, TOTAL_TV } from "./timeline";
 import { Abertura } from "./scenes/Abertura";
 import { Conversa } from "./scenes/Conversa";
 import { Cliente } from "./scenes/Cliente";
-import { Entrega } from "./scenes/Entrega";
+import { Site } from "./scenes/Site";
+import { Celular } from "./scenes/Celular";
 import { Parceria } from "./scenes/Parceria";
 import { Encerramento } from "./scenes/Encerramento";
 
@@ -16,15 +17,17 @@ const SCENES: { key: keyof typeof T; name: string; C: React.FC }[] = [
   { key: "hook", name: "1 · Abertura", C: Abertura },
   { key: "conversa", name: "2 · A conversa", C: Conversa },
   { key: "cliente", name: "3 · Bem-vinda, Odontocril", C: Cliente },
-  { key: "entrega", name: "4 · Primeira entrega", C: Entrega },
-  { key: "parceria", name: "5 · Parceria", C: Parceria },
-  { key: "final", name: "6 · Encerramento", C: Encerramento },
+  { key: "site", name: "4 · O site no computador", C: Site },
+  { key: "celular", name: "5 · O site no celular", C: Celular },
+  { key: "parceria", name: "6 · Parceria", C: Parceria },
+  { key: "final", name: "7 · Encerramento", C: Encerramento },
 ];
 
 const CAPTIONS: [keyof typeof T, string][] = [
   ["conversa", "Como tudo começou"],
   ["cliente", "Cliente nº 1"],
-  ["entrega", "Primeiro projeto"],
+  ["site", "Primeiro projeto"],
+  ["celular", "No celular"],
   ["parceria", "Parceria"],
 ];
 
