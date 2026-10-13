@@ -1,15 +1,41 @@
 # Vídeo institucional — Odontocril
 
-Vídeo de ~58 s produzido em código com [Remotion](https://www.remotion.dev/) (React) + FFmpeg.
+Produzido em código com [Remotion](https://www.remotion.dev/) (React) + FFmpeg.
+
+## Versão 2 (atual) — estilo "demo de produto"
+
+Inspirada no vídeo de referência: fundo claro, cabeçalho fixo com a logo e o indicador "Passo 1 de 3",
+títulos curtos alinhados à esquerda com destaque azul e a história contada por interfaces (conversa no
+WhatsApp, seleção de equipamentos com cursor, painel de assistência técnica). Trilha ritmada (120 BPM) e
+sons de interface; **sem narração**, como na referência.
 
 | Arquivo | Formato |
 |---|---|
-| `out/odontocril-institucional-vertical.mp4` | 1080 × 1920 (9:16) — Reels/Stories |
-| `out/odontocril-institucional-horizontal.mp4` | 1920 × 1080 (16:9) — site e apresentações |
+| `out/odontocril-institucional-vertical.mp4` | 1080 × 1920 (9:16) — Reels/Stories, 46 s |
+| `out/odontocril-institucional-horizontal.mp4` | 1920 × 1080 (16:9) — site e apresentações, 46 s |
 
-H.264 (High, yuv420p, 30 fps) + AAC 192 kbps 48 kHz, áudio normalizado em −14 LUFS / −1,5 dBTP.
+| Cena | Tempo | Conteúdo |
+|---|---|---|
+| Abertura | 0–6 s | "Você cuida do sorriso / dos pacientes / da clínica. A gente cuida dos equipamentos." |
+| Passo 1 | 6–14 s | Conversa no WhatsApp: o dentista conta o que o consultório precisa |
+| Passo 2 | 14–24 s | Linha de equipamentos: cursor seleciona itens e pede orçamento |
+| Passo 3 | 24–32 s | Assistência técnica: equipamentos passam a "Em funcionamento" |
+| No dia a dia | 32–38 s | Consultório com o refletor acendendo · Segurança, Eficiência, Pronto para atender |
+| Encerramento | 38–46 s | Logo, slogan, botão "Fale com a gente no WhatsApp" e contatos |
 
-## Estrutura
+Código: `src/v2/` (cenas em `src/v2/scenes/`, tempos em `src/v2/timeline.ts`, contatos em
+`src/v2/scenes/Final.tsx`). Trilha: `scripts/trilha_v2.py`; efeitos: `scripts/sfx.py`.
+
+A conversa e a tela de seleção são **encenações ilustrativas** do atendimento (como a referência faz com a
+padaria fictícia); não representam um sistema real da empresa nem depoimentos de clientes.
+
+## Versão 1 — institucional com narração
+
+Arquivos `out/odontocril-institucional-v1-*.mp4` (57,6 s, narração pt-BR). Código em `src/` (fora de `v2/`);
+composições `V1-Vertical` e `V1-Horizontal`. Renderizar com
+`npx remotion render V1-Vertical out/v1.mp4`.
+
+## Estrutura (versão 1)
 
 | Cena | Tempo | Conteúdo |
 |---|---|---|
@@ -45,7 +71,7 @@ public/
 
 ```bash
 npm install
-./render.sh                # gera as duas versões em out/
+./render.sh                # gera vertical e horizontal (versão 2) em out/
 ./render.sh Vertical       # apenas uma
 npx remotion studio        # pré-visualização interativa no navegador
 ```
@@ -96,6 +122,7 @@ Também vale confirmar com a empresa:
   e separação de cores do arquivo original, sem redesenho.
 - **Narração:** voz sintética `pm_alex` do Kokoro-82M (Apache 2.0), gerada por `scripts/narracao.py`.
 - **Trilha:** composição original sintetizada por `scripts/trilha.py` — sem amostras de terceiros, livre de direitos.
-- **Fontes:** Montserrat e Open Sans — SIL Open Font License (`public/fonts/OFL-*.txt`).
+- **Efeitos sonoros (v2):** sintetizados por `scripts/sfx.py`, livres de direitos.
+- **Fontes:** Inter, Inter Tight, Instrument Serif, Montserrat e Open Sans — SIL Open Font License (`public/fonts/OFL-*.txt`).
 - **Remotion:** gratuito para empresas com até 3 pessoas; acima disso exige licença
   (<https://www.remotion.dev/license>).
